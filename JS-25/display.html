@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Solution</title>
+    <style>
+        
+        #code-output {
+            font-size: 1.2em; 
+            line-height: 1.5; 
+            white-space: pre-wrap; 
+            background-color: #f8f8f8; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Solution for: <span id="solution-name"></span></h1>
+    
+    <form id="inputForm"></form>
+    
+    <div id="output"></div>
+    <pre id="code-output"></pre>
+
+    <script>
+        const scriptFile = localStorage.getItem('scriptFile');
+        const scriptName = localStorage.getItem('scriptName');
+        document.getElementById('solution-name').innerText = scriptName;
+
+        // Load the JavaScript file
+        const script = document.createElement('script');
+        script.src = scriptFile;
+        document.body.appendChild(script);
+
+        // Display the code
+        fetch(scriptFile)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('code-output').textContent = data;
+            });
+
+        function handleInputs(inputs) {
+            let result;
+            switch (scriptName) {
+                case 'Multiply':
+                    result = multiply(...inputs);
+                    break;
+                case 'Get Planet Name':
+                    result = getPlanetName(...inputs);
+                    break;
+                case 'Reversed String':
+                    result = solution(...inputs);
+                    break;
+                case 'Even or Odd':
+                    result = even_or_odd(...inputs);
+                    break;
+                case 'Vowel Count':
+                    result = getCount(...inputs);
+                    break;
+                case 'Jenny\'s Secret Message':
+                    result = greet(...inputs);
+                    break;
+                case 'Is n Divisible by x and y?':
+                    result = isDivisible(...inputs);
+                    break;
+                case 'Return Negative':
+                    result = makeNegative(...inputs);
+                    break;
+                case 'Find Smallest Integer':
+                    result = new SmallestIntegerFinder().findSmallestInt(...inputs);
+                    break;
+                case 'Summation':
+                    result = summation(...inputs);
+                    break;
+                case 'Get Average':
+                    result = getAverage(...inputs);
+                    break;
+                case 'Rock Paper Scissors':
+                    result = rps(...inputs);
+                    break;
+                case 'Remove First and Last Character':
+                    result = removeChar(...inputs);
+                    break;
+                case 'Sum of Positive':
+                    result = positiveSum(...inputs);
+                    break;
+                case 'Basic Mathematical Operations':
+                    result = basicOp(...inputs);
+                    break;
+                case 'String Repeat':
+                    result = repeatStr(...inputs);
+                    break;
+                case 'Convert String to Array':
+                    result = stringToArray(...inputs);
+                    break;
+                case 'Remove String Spaces':
+                    result = noSpace(...inputs);
+                    break;
+                case 'Beginner - Lost Without a Map':
+                    result = maps(...inputs);
+                    break;
+                case 'Is He Gonna Survive?':
+                    result = hero(...inputs);
+                    break;
+                case 'Array Plus Array':
+                    result = arrayPlusArray(...inputs);
+                    break;
+                case 'Century from Year':
+                    result = century(...inputs);
+                    break;
+                case 'Cat Years, Dog Years':
+                    result = humanYearsCatYearsDogYears(...inputs);
+                    break;
+                case 'Total Amount of Points':
+                    result = points(...inputs);
+                    break;
+                default:
+                    result = 'Function not implemented.';
+            }
+            document.getElementById("output").innerText = `Result: ${result}`;
+        }
+
+        // Define input handling for each function
+        switch (scriptName) {
+            case 'Multiply':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="inputA">Enter first number:</label>
+                    <input type="number" id="inputA" required>
+                    <br>
+                    <label for="inputB">Enter second number:</label>
+                    <input type="number" id="inputB" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Calculate</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const inputA = parseFloat(document.getElementById("inputA").value);
+                    const inputB = parseFloat(document.getElementById("inputB").value);
+                    handleInputs([inputA, inputB]);
+                });
+                break;
+
+            case 'Get Planet Name':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="id">Enter planet ID (1-8):</label>
+                    <input type="number" id="id" min="1" max="8" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Planet</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const id = parseInt(document.getElementById("id").value);
+                    handleInputs([id]);
+                });
+                break;
+
+            case 'Reversed String':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="string">Enter a string:</label>
+                    <input type="text" id="string" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Reverse</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const str = document.getElementById("string").value;
+                    handleInputs([str]);
+                });
+                break;
+
+            case 'Even or Odd':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="number">Enter a number:</label>
+                    <input type="number" id="number" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Check</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const num = parseInt(document.getElementById("number").value);
+                    handleInputs([num]);
+                });
+                break;
+
+            case 'Vowel Count':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="string">Enter a string:</label>
+                    <input type="text" id="string" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Count Vowels</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const str = document.getElementById("string").value;
+                    handleInputs([str]);
+                });
+                break;
+
+            case 'Jenny\'s Secret Message':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="name">Enter a name:</label>
+                    <input type="text" id="name" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Check Greeting</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const name = document.getElementById("name").value;
+                    handleInputs([name]);
+                });
+                break;
+
+            case 'Is n Divisible by x and y?':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="n">Enter n:</label>
+                    <input type="number" id="n" required>
+                    <br>
+                    <label for="x">Enter x:</label>
+                    <input type="number" id="x" required>
+                    <br>
+                    <label for="y">Enter y:</label>
+                    <input type="number" id="y" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Check Divisibility</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const n = parseInt(document.getElementById("n").value);
+                    const x = parseInt(document.getElementById("x").value);
+                    const y = parseInt(document.getElementById("y").value);
+                    handleInputs([n, x, y]);
+                });
+                break;
+
+            case 'Return Negative':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="num">Enter a number:</label>
+                    <input type="number" id="num" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Return Negative</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const num = parseInt(document.getElementById("num").value);
+                    handleInputs([num]);
+                });
+                break;
+
+            case 'Find Smallest Integer':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="array">Enter array (comma-separated):</label>
+                    <input type="text" id="array" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Find Smallest</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const arr = document.getElementById("array").value.split(',').map(Number);
+                    handleInputs([arr]);
+                });
+                break;
+
+            case 'Summation':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="num">Enter a number:</label>
+                    <input type="number" id="num" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Sum</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const num = parseInt(document.getElementById("num").value);
+                    handleInputs([num]);
+                });
+                break;
+
+            case 'Get Average':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="array">Enter array (comma-separated):</label>
+                    <input type="text" id="array" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Average</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const arr = document.getElementById("array").value.split(',').map(Number);
+                    handleInputs([arr]);
+                });
+                break;
+
+            case 'Rock Paper Scissors':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="player">Enter player choice (rock, paper, scissors):</label>
+                    <input type="text" id="player" required>
+                    <br>
+                    <label for="computer">Enter computer choice (rock, paper, scissors):</label>
+                    <input type="text" id="computer" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Play</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const player = document.getElementById("player").value;
+                    const computer = document.getElementById("computer").value;
+                    handleInputs([player, computer]);
+                });
+                break;
+
+            case 'Remove First and Last Character':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="string">Enter a string:</label>
+                    <input type="text" id="string" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Remove</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const str = document.getElementById("string").value;
+                    handleInputs([str]);
+                });
+                break;
+
+            case 'Sum of Positive':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="array">Enter array (comma-separated):</label>
+                    <input type="text" id="array" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Sum</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const arr = document.getElementById("array").value.split(',').map(Number);
+                    handleInputs([arr]);
+                });
+                break;
+
+            case 'Basic Mathematical Operations':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="operation">Select operation (+, -, *, /):</label>
+                    <input type="text" id="operation" required>
+                    <br>
+                    <label for="value1">Enter first value:</label>
+                    <input type="number" id="value1" required>
+                    <br>
+                    <label for="value2">Enter second value:</label>
+                    <input type="number" id="value2" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Calculate</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const operation = document.getElementById("operation").value;
+                    const value1 = parseFloat(document.getElementById("value1").value);
+                    const value2 = parseFloat(document.getElementById("value2").value);
+                    handleInputs([operation, value1, value2]);
+                });
+                break;
+
+            case 'String Repeat':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="numberOfRepeats">Enter number of repeats:</label>
+                    <input type="number" id="numberOfRepeats" required>
+                    <br>
+                    <label for="str">Enter string:</label>
+                    <input type="text" id="str" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Repeat</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const numberOfRepeats = parseInt(document.getElementById("numberOfRepeats").value);
+                    const str = document.getElementById("str").value;
+                    handleInputs([numberOfRepeats, str]);
+                });
+                break;
+
+            case 'Convert String to Array':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="string">Enter a string:</label>
+                    <input type="text" id="string" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Convert</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const str = document.getElementById("string").value;
+                    handleInputs([str]);
+                });
+                break;
+
+            case 'Remove String Spaces':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="string">Enter a string:</label>
+                    <input type="text" id="string" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Remove Spaces</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const str = document.getElementById("string").value;
+                    handleInputs([str]);
+                });
+                break;
+
+            case 'Beginner - Lost Without a Map':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="array">Enter array (comma-separated):</label>
+                    <input type="text" id="array" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Lost Map</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const arr = document.getElementById("array").value.split(',').map(Number);
+                    handleInputs([arr]);
+                });
+                break;
+
+            case 'Is He Gonna Survive?':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="health">Enter health:</label>
+                    <input type="number" id="health" required>
+                    <br>
+                    <label for="damage">Enter damage:</label>
+                    <input type="number" id="damage" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Survive?</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const health = parseInt(document.getElementById("health").value);
+                    const damage = parseInt(document.getElementById("damage").value);
+                    handleInputs([health, damage]);
+                });
+                break;
+
+            case 'Array Plus Array':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="array1">Enter first array (comma-separated):</label>
+                    <input type="text" id="array1" required>
+                    <br>
+                    <label for="array2">Enter second array (comma-separated):</label>
+                    <input type="text" id="array2" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Add Arrays</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const arr1 = document.getElementById("array1").value.split(',').map(Number);
+                    const arr2 = document.getElementById("array2").value.split(',').map(Number);
+                    handleInputs([arr1, arr2]);
+                });
+                break;
+
+            case 'Century from Year':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="year">Enter a year:</label>
+                    <input type="number" id="year" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Century</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const year = parseInt(document.getElementById("year").value);
+                    handleInputs([year]);
+                });
+                break;
+
+            case 'Cat Years, Dog Years':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="humanYears">Enter human years:</label>
+                    <input type="number" id="humanYears" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Get Cat and Dog Years</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const humanYears = parseInt(document.getElementById("humanYears").value);
+                    handleInputs([humanYears]);
+                });
+                break;
+
+            case 'Total Amount of Points':
+                document.getElementById('inputForm').innerHTML = `
+                    <label for="games">Enter games result (comma-separated):</label>
+                    <input type="text" id="games" required>
+                    <br>
+                    <button type="button" id="calculateBtn">Calculate Points</button>
+                `;
+                document.getElementById('calculateBtn').addEventListener('click', function() {
+                    const gamesArray = document.getElementById("games").value.split(',');
+                    handleInputs([gamesArray]);
+                });
+                break;
+        }
+    </script>
+</body>
+</html>

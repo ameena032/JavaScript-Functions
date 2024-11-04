@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4; 
+            padding: 20px;
+        }
+        h1 {
+            color: #333; /
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1em; 
+            transition: transform 0.2s; 
+        }
+        .button:hover {
+            transform: scale(1.05); 
+        }
+        /* Individual button colors */
+        .button-multiply { background-color: #4CAF50; }
+        .button-get-planet { background-color: #2196F3; }
+        .button-reverse { background-color: #FF9800; }
+        .button-even-odd { background-color: #9C27B0; }
+        .button-vowel-count { background-color: #f44336; }
+        .button-secret-message { background-color: #FFC107; }
+        .button-divisible { background-color: #3F51B5; }
+        .button-negative { background-color: #E91E63; }
+        .button-smallest { background-color: #8BC34A; }
+        .button-summation { background-color: #FF5722; }
+        .button-average { background-color: #673AB7; }
+        .button-rps { background-color: #00BCD4; }
+        .button-remove-char { background-color: #795548; }
+        .button-positive-sum { background-color: #9E9E9E; }
+        .button-basic-op { background-color: #F44336; }
+        .button-repeat { background-color: #3F51B5; }
+        .button-string-to-array { background-color: #FF9800; }
+        .button-remove-space { background-color: #4CAF50; }
+        .button-map { background-color: #2196F3; }
+        .button-hero { background-color: #9C27B0; }
+        .button-array-plus { background-color: #F44336; }
+        .button-century { background-color: #FFC107; }
+        .button-cat-dog-years { background-color: #E91E63; }
+        .button-points { background-color: #8BC34A; }
+    </style>
+</head>
+<body>
+    <h1>Select a JS Function</h1>
+    <div class="button button-multiply" onclick="navigateTo('file1.js', 'Multiply')">Multiply</div>
+    <div class="button button-get-planet" onclick="navigateTo('file2.js', 'Get Planet Name')">Get Planet Name</div>
+    <div class="button button-reverse" onclick="navigateTo('file3.js', 'Reversed String')">Reversed String</div>
+    <div class="button button-even-odd" onclick="navigateTo('file4.js', 'Even or Odd')">Even or Odd</div>
+    <div class="button button-vowel-count" onclick="navigateTo('file5.js', 'Vowel Count')">Vowel Count</div>
+    <div class="button button-secret-message" onclick="navigateTo('file6.js', 'Jenny\'s Secret Message')">Jenny's Secret Message</div>
+    <div class="button button-divisible" onclick="navigateTo('file7.js', 'Is n Divisible by x and y?')">Is n Divisible by x and y?</div>
+    <div class="button button-negative" onclick="navigateTo('file8.js', 'Return Negative')">Return Negative</div>
+    <div class="button button-smallest" onclick="navigateTo('file9.js', 'Find Smallest Integer')">Find Smallest Integer</div>
+    <div class="button button-summation" onclick="navigateTo('file10.js', 'Summation')">Summation</div>
+    <div class="button button-average" onclick="navigateTo('file11.js', 'Get Average')">Get Average</div>
+    <div class="button button-rps" onclick="navigateTo('file12.js', 'Rock Paper Scissors')">Rock Paper Scissors</div>
+    <div class="button button-remove-char" onclick="navigateTo('file13.js', 'Remove First and Last Character')">Remove First and Last Character</div>
+    <div class="button button-positive-sum" onclick="navigateTo('file14.js', 'Sum of Positive')">Sum of Positive</div>
+    <div class="button button-basic-op" onclick="navigateTo('file15.js', 'Basic Mathematical Operations')">Basic Mathematical Operations</div>
+    <div class="button button-repeat" onclick="navigateTo('file16.js', 'String Repeat')">String Repeat</div>
+    <div class="button button-string-to-array" onclick="navigateTo('file17.js', 'Convert String to Array')">Convert String to Array</div>
+    <div class="button button-remove-space" onclick="navigateTo('file18.js', 'Remove String Spaces')">Remove String Spaces</div>
+    <div class="button button-map" onclick="navigateTo('file19.js', 'Beginner - Lost Without a Map')">Beginner - Lost Without a Map</div>
+    <div class="button button-hero" onclick="navigateTo('file20.js', 'Is He Gonna Survive?')">Is He Gonna Survive?</div>
+    <div class="button button-array-plus" onclick="navigateTo('file21.js', 'Array Plus Array')">Array Plus Array</div>
+    <div class="button button-century" onclick="navigateTo('file22.js', 'Century from Year')">Century from Year</div>
+    <div class="button button-cat-dog-years" onclick="navigateTo('file23.js', 'Cat Years, Dog Years')">Cat Years, Dog Years</div>
+    <div class="button button-points" onclick="navigateTo('file24.js', 'Total Amount of Points')">Total Amount of Points</div>
+
+    <script>
+        function navigateTo(scriptFile, scriptName) {
+            localStorage.setItem('scriptFile', scriptFile);
+            localStorage.setItem('scriptName', scriptName);
+            window.location.href = 'display.html';
+        }
+    </script>
+</body>
+</html>
